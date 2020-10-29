@@ -1,0 +1,12 @@
+2020-10-28 15:17:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE HIBERNATE_SEQUENCE (NEXT_VAL BIGINT) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+create table hibernate_sequence (next_val bigint) engine=MyISAM [42001-200]
+2020-10-28 15:17:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HIBERNATE_SEQUENCE" not found; SQL statement:
+insert into hibernate_sequence values ( 1 ) [42102-200]
+2020-10-28 15:17:18 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "CREATE TABLE USER (ID INTEGER NOT NULL, ADDRESS VARCHAR(255), EMAIL VARCHAR(255), FIRST_NAME VARCHAR(255), LAST_NAME VARCHAR(255), PASSWORD VARCHAR(255), ROLE VARCHAR(255), PRIMARY KEY (ID)) ENGINE=[*]MYISAM"; expected "identifier"; SQL statement:
+create table user (id integer not null, address varchar(255), email varchar(255), first_name varchar(255), last_name varchar(255), password varchar(255), role varchar(255), primary key (id)) engine=MyISAM [42001-200]
+2020-10-28 15:17:18 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "HIBERNATE_SEQUENCE" not found; SQL statement:
+select next_val as id_val from hibernate_sequence for update [42102-200]
