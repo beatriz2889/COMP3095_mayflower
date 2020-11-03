@@ -1,4 +1,4 @@
-package comp3095_mayflower.demo;
+package comp3095_mayflower.demo.demo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

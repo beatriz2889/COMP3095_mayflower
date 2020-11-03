@@ -17,7 +17,7 @@ public class User {
     private String password;
     private String role;
 
-    protected User(){}
+    public User(){}
 
     public User(String firstname, String lastname, String address, String email, String password,String role){
 
@@ -55,5 +55,34 @@ public class User {
         return email;
     }
 
+    public String getPassword(){return password;}
+
     public String getRole(){return role;}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setRole(String role){
+        this.role=role;
+    }
 }

@@ -2,12 +2,22 @@ package comp3095_mayflower.demo.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 public class UserController {
+
+
+    @Autowired
+    private UserServiceImpl userServiceImpl;
+
     @Autowired
     private UserRepository userRepository;
+
+    public UserController(UserRepository userRepository){
+        this.userRepository=userRepository;
+    }
 
     @GetMapping("/user/{email}")
     public User getUserByEmail(@PathVariable(value="email")String email){
@@ -24,4 +34,5 @@ public class UserController {
     public User getUserByPassword(@PathVariable(value="password")String password){
         return userRepository.findByPassword(password);
     }
+
 }
