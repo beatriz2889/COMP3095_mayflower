@@ -29,7 +29,7 @@ public class DemoApplication {
 
        // UserRepository userRepository=(UserRepository)ctx.getBean("userRepository");
 
-        UserServiceImpl userServiceImpl = (UserServiceImpl) ctx.getBean("userImpl");
+        UserServiceImpl userServiceImpl = (UserServiceImpl) ctx.getBean("userService");
 
         //UserController userController=(UserController)ctx.getBean("userController");
     }

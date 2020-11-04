@@ -7,7 +7,7 @@ Body {
 }
 .btn-primary {
     background-color: purple;
-    width: 50%;
+    width: 40%;
     color: orange;
     padding: 15px;
     margin: 10px 0px;
@@ -23,7 +23,7 @@ form {
 
 }
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 40%;
     margin: 8px 0;
     padding: 12px 20px;
     display: inline-block;
@@ -33,4 +33,9 @@ input[type=text], input[type=password] {
 }
 button:hover {
     opacity: 0.7;
+}
+
+.g-recaptcha{
+    display: flex;
+    justify-content: center;
 }

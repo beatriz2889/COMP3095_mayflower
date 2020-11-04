@@ -31,8 +31,8 @@ public class User {
 
     @Override
     public String toString(){
-        return String.format("User[id=%d, firstname='%s', lastname='%s', address='%s', email='%s']",
-                id,firstname,lastname,address,email);
+        return String.format("User[id=%d, firstname='%s', lastname='%s', address='%s', email='%s',password='%s']",
+                id,firstname,lastname,address,email,password);
     }
 
     public int getId(){

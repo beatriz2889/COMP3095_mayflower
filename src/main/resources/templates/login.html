@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link th:href="@{/styles.css}" rel="stylesheet"/>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </head>
 <body>
@@ -22,6 +23,8 @@
                 <div class="form-group">
                     <label for="password">Password</label>: <input type="password" id="password" th:name="password" class="form-control" placeholder="Password"/>
                 </div>
+                <div class="g-recaptcha" data-sitekey="6LfqCt8ZAAAAAMYPYYaiKPIo8TY7k28ryj8i-fbN"></div>
+                <br/>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">

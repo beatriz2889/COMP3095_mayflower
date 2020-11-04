@@ -10,29 +10,33 @@ public class UserController {
 
 
     @Autowired
-    private UserServiceImpl userServiceImpl;
+    private UserService userService;
 
     @Autowired
     private UserRepository userRepository;
 
-    public UserController(UserRepository userRepository){
-        this.userRepository=userRepository;
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @GetMapping("/user/{email}")
-    public User getUserByEmail(@PathVariable(value="email")String email){
+    public User getUserByEmail(@PathVariable(value = "email") String email) {
         return userRepository.findByEmail(email);
     }
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
-    public User addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
     @GetMapping("/user/{password}")
-    public User getUserByPassword(@PathVariable(value="password")String password){
+    public User getUserByPassword(@PathVariable(value = "password") String password) {
         return userRepository.findByPassword(password);
     }
-
 }
+/*
+    @GetMapping("/user/{email/password}")
+    public User getUserByEmailAndPassword(@PathVariable(value="email",="password") String email,String password)
+
+}*/

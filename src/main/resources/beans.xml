@@ -10,7 +10,7 @@
     <jpa:repositories base-package="comp3095_mayflower.demo.backend"/>
     <bean id="userRepository" class="comp3095_mayflower.demo.backend.UserRepository" abstract="true">
     </bean>
-    <bean id="userImpl" class="comp3095_mayflower.demo.backend.UserServiceImpl" parent="userRepository"/>
+    <bean id="userService" class="comp3095_mayflower.demo.backend.UserServiceImpl" parent="userRepository"/>
 
 </beans>
 
