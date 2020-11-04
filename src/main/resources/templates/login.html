@@ -38,5 +38,28 @@
     </div>
 </div>
 
+    <br/>
+    <h2>Alan playing with the login:</h2>
+<!-- All code I added was from a tutorial I found for us to compare and discuss to what we have.
+source: https://www.youtube.com/watch?v=Tke5zjCshkc
+
+ Files I added:
+ controllers/LoginController
+ forms/LoginForm
+ templates/index.html
+ and these form below -->
+    <form th:action="@{/login}" th:object="${loginForm}" method="post">
+
+        <p th:if="${invalidCredentials}" class="error">Username or Password is wrong</p>
+
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autofocus="autofocus">
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <br/>
+        <input type="submit" value="Log In">
+    </form>
+
 </body>
 </html>
