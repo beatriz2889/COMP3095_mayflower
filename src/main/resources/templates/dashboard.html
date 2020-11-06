@@ -1,15 +1,18 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Hello World!</title>
+    <title>Dashboard</title>
 </head>
 <body>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]] !</h1>
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Sign Out"/>
-    <h1>Dashboard</h1>
-    <img src="@{/images/under-construction-banner.jpg}" alt="UNDER-CONSTRUCTION">
 </form>
+
+<h1>Dashboard</h1>
+<img th:src="@{/img/banner.png}" alt="UNDER-CONSTRUCTION"/>
+<p>test 15</p>
+
 </body>
 </html>
