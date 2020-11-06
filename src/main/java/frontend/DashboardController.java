@@ -30,6 +30,26 @@ public class DashboardController {
         return "dashboard";
     }
 
+    @RequestMapping("/tab1")
+    public String showTab1Page() {
+        return "tab1";
+    }
+
+    @RequestMapping("/tab2")
+    public String showTab2Page() {
+        return "tab2";
+    }
+
+    @RequestMapping("/tab3")
+    public String showTab3Page() {
+        return "tab3";
+    }
+
+    @RequestMapping("/tab4")
+    public String showTab4Page() {
+        return "tab4";
+    }
+
 
 
 }
