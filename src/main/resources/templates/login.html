@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -18,10 +18,10 @@
                 </div>
                 <div th:if="${param.logout}">You have been logged out</div>
                 <div class="form-group">
-                    <label for="email">Username</label>: <input type="text" id="email" th:name="email" class="form-control" autofocus="autofocus" placeholder="Username"/>
+                    <label for="email">Username</label>: <input type="email" id="email" th:name="email" class="form-control" autofocus="autofocus" placeholder="Username" th:required="required"/>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>: <input type="password" id="password" th:name="password" class="form-control" placeholder="Password"/>
+                    <label for="password">Password</label>: <input type="password" id="password" th:name="password" class="form-control" placeholder="Password" th:required="required"/>
                 </div>
                 <div class="g-recaptcha" data-sitekey="6LfqCt8ZAAAAAMYPYYaiKPIo8TY7k28ryj8i-fbN"></div>
                 <br/>
