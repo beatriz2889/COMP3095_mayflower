@@ -20,6 +20,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,14 +50,17 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
+    public ModelAndView login(@RequestParam(value = "email") String email,
+                              @RequestParam(value = "password") String password,
+                              Model model) {
         User user = userRepository.findByEmail(email);
-        if (Objects.nonNull(user) && email.equals(user.getEmail()) && password.equals(user.getPassword())) {
+        if (Objects.nonNull(user) && email.equals(user.getEmail())
+                                  && password.equals(user.getPassword())) {
             return new ModelAndView(new RedirectView("/dashboard", true));
         } else {
             // How to display user name in dashboard page???
-//            String username = user.getFirstName();
-//            model.addAtribute("username", username);
+            model.addAttribute("invalidCredentials", true);
+
             return new ModelAndView("login");
         }
     }
