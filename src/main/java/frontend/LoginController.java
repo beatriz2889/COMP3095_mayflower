@@ -53,6 +53,9 @@ public class LoginController {
         if (Objects.nonNull(user) && email.equals(user.getEmail()) && password.equals(user.getPassword())) {
             return new ModelAndView(new RedirectView("/dashboard", true));
         } else {
+            // How to display user name in dashboard page???
+//            String username = user.getFirstName();
+//            model.addAtribute("username", username);
             return new ModelAndView("login");
         }
     }
