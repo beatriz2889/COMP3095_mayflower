@@ -33,43 +33,12 @@ public class DemoApplication {
 
     private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
     private UserRepository userRepository;
-    //private UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class,args);
 
         ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
 
-       // UserRepository userRepository=(UserRepository)ctx.getBean("userRepository");
-
         UserServiceImpl userServiceImpl = (UserServiceImpl) ctx.getBean("userService");
-
-        //UserController userController=(UserController)ctx.getBean("userController");
     }
-
-    /*@Bean
-    public UserService userService(){
-        return new UserImpl();
-
-    }*/
-
-
-
- /* @Bean
-    public void setUserRepository(UserRepository userRepository){
-        this.userRepository=userRepository;
-    }*/
-
-   /* @Bean
-    public CommandLineRunner demo(UserRepository rep) {
-        return (args) -> {
-            rep.save(new User("Beatriz","Morales","145 Road","b@gmail.com","pass","user"));
-            for (User user : rep.findAll()) {
-                log.info(user.toString());
-            };
-
-
-        };
-    }*/
-
 }

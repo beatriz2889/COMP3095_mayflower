@@ -8,16 +8,12 @@
  It contains all of the fields required and the ID is auto generated for ease of use.
  ***************************************************************************************************/
 
-
-
-
 package comp3095_mayflower.demo.backend;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.Constraint;
 
 @Entity
 public class User {
@@ -100,7 +96,5 @@ public class User {
     public void setRole(String role){
         this.role=role;
     }
-
-
 }
 

@@ -6,7 +6,8 @@
  * Date: 2020-11-08
  * Description: This is the controller class for the registration page. It contains the url mapping
  to the register page and the register function. The function takes the user input and creates a
- new user with the input as the parameters. Finally, it calls the built in repository save method
+ new user with the input as the parameters. The functions also checks if the password and
+ confirmPassword field match. Finally, it calls the built in repository save method
  to save the user object to the database.
  ***************************************************************************************************/
 package frontend;
@@ -17,7 +18,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -27,9 +27,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
-
-import javax.validation.Valid;
-import java.util.Objects;
 
 @Controller
 @Validated
@@ -60,32 +57,19 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView register(@RequestParam(value="firstname")String firstname,
-                                 @RequestParam(value="lastname")String lastname,
-                                 @RequestParam(value="address")String address,
-                                 @RequestParam(value="email")String email,
-                                 @RequestParam(value="password")String password,
-                                 @RequestParam(value="confirmpassword")String confirmpassword) {
-        UserValidator userValidator=new UserValidator();
-        User user = new User(firstname, lastname, address, email, password, "user");
-        /*user.setFirstname(firstname);
-        user.setLastname(lastname);
-        user.setAddress(address);
-        user.setEmail(email);
-        user.setPassword(password);
-        user.setRole("user");*/
-        userRepository.save(user);
-        return new ModelAndView(new RedirectView("/registersuccess", true));
+    public ModelAndView register(@RequestParam(value = "firstName") String firstName,
+                                 @RequestParam(value = "lastName") String lastName,
+                                 @RequestParam(value = "address") String address,
+                                 @RequestParam(value = "email") String email,
+                                 @RequestParam(value = "password") String password,
+                                 @RequestParam(value = "confirmPassword") String confirmPassword) {
+        UserValidator userValidator = new UserValidator();
+        if (password.equals(confirmPassword)) {
+            User user = new User(firstName, lastName, address, email, password, "user");
+            userRepository.save(user);
+            return new ModelAndView(new RedirectView("/registerSuccess", true));
         }
+        return new ModelAndView("register");
     }
-
-
-
-
-
-    /*@RequestMapping(value="/register",method= RequestMethod.POST)
-    public ModelAndView register(@RequestParam(value="firstName")String firstName,@RequestParam(value="lastName")String lastName,@RequestParam(value="address")String address,@RequestParam(value="email")String email,@RequestParam(value="password")String password,@RequestParam(value="confirmPassword")String confirmPassword){
-
-    }
-*/
+}
 

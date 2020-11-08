@@ -1,10 +1,21 @@
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #2 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-11-08
+ * Description: This is the validation class for the user object. It contains the validate
+ function which checks if the first and last names contain only letters, if the email is in
+ proper email format and if the password is between 6-12 characters in length and contains
+ at least one upper case and special character.
+ ***************************************************************************************************/
+
 package comp3095_mayflower.demo.backend;
 
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +46,5 @@ public class UserValidator implements Validator {
         if (user.getPassword().length()<6 && user.getPassword().length()>12 && !passMatch.matches()){
             errors.rejectValue("password","Password must be between 6-12 characters and contain at least one upper case and special character");
         }
-
     }
 }
