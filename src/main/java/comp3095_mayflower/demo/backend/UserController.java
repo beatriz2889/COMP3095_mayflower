@@ -1,3 +1,14 @@
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #2 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-11-08
+ * Description: This is the Controller for the User class. It contains the mappings for the repository
+ methods that are defined in the UserServiceImpl class.
+ ***************************************************************************************************/
+
+
 package comp3095_mayflower.demo.backend;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +35,11 @@ public class UserController {
         return userRepository.findByEmail(email);
     }
 
-    @PostMapping("/user")
+    /*@PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
     public User addUser(@RequestBody User user) {
         return userRepository.save(user);
-    }
+    }*/
 
     @GetMapping("/user/{password}")
     public User getUserByPassword(@PathVariable(value = "password") String password) {

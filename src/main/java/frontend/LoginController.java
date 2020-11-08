@@ -1,9 +1,20 @@
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #2 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-11-08
+ * Description: This is the controller class for the login. The login function is defined here which
+ takes two parameters (email and password). The function checks if the email and password match the
+ email and password of a user in the database. If it does, then the user is redirected to the
+ dashboard page. If not, then it stays on the login page. Mappings for the login nd registration page
+ are defined as well since there is a button that links to the registration page from login.
+ ***************************************************************************************************/
+
+
 package frontend;
 
-import comp3095_mayflower.demo.backend.User;
-import comp3095_mayflower.demo.backend.UserController;
-import comp3095_mayflower.demo.backend.UserRepository;
-import comp3095_mayflower.demo.backend.UserServiceImpl;
+import comp3095_mayflower.demo.backend.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +59,11 @@ public class LoginController {
         return "login";
     }
 
+    /*@RequestMapping("/register")
+    public String showRegisterPage(){
+        return "register";
+    }*/
+
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
@@ -56,7 +72,7 @@ public class LoginController {
         User user = userRepository.findByEmail(email);
         if (Objects.nonNull(user) && email.equals(user.getEmail()) && password.equals(user.getPassword())) {
             //try to change url to dashboard
-
+            //userServiceImpl.setLoggedInUser(user);
             return new ModelAndView(new RedirectView("/dashboard", true));
         } else {
 

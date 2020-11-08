@@ -1,9 +1,23 @@
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #2 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-11-08
+ * Description: This is the class for the User entity, which is what will be mapped to the database.
+ It contains all of the fields required and the ID is auto generated for ease of use.
+ ***************************************************************************************************/
+
+
+
+
 package comp3095_mayflower.demo.backend;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Constraint;
 
 @Entity
 public class User {
@@ -82,7 +96,11 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public void setRole(String role){
         this.role=role;
     }
+
+
 }
+

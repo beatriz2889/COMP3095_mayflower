@@ -1,8 +1,21 @@
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #2 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-11-08
+ * Description: The main class of the application. Various annotations are used here in order to
+ use the needed files. @EnableJpaRepositories is used to scan the backend folder in order to locate
+ the UserRepository file. @EntityScan is used to locate the User class. The application context is
+ established here in order to use the beans defined in our beans.xml file. Since the repository
+ could not be directly instantiated as a bean due to it being an abstract bean another bean of the
+ UserServiceImpl class is used and inherits from the repository.
+
+ ***************************************************************************************************/
+
 package frontend;
 
-import comp3095_mayflower.demo.backend.User;
-import comp3095_mayflower.demo.backend.UserRepository;
-import comp3095_mayflower.demo.backend.UserServiceImpl;
+import comp3095_mayflower.demo.backend.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

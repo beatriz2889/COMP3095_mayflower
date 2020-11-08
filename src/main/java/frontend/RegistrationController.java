@@ -1,27 +1,86 @@
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #2 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-11-08
+ * Description: This is the controller class for the registration page. It contains the url mapping
+ to the register page and the register function. The function takes the user input and creates a
+ new user with the input as the parameters. Finally, it calls the built in repository save method
+ to save the user object to the database.
+ ***************************************************************************************************/
 package frontend;
 
-import comp3095_mayflower.demo.backend.UserController;
-import comp3095_mayflower.demo.backend.UserRepository;
+import comp3095_mayflower.demo.backend.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.validation.Valid;
+import java.util.Objects;
+
+@Controller
+@Validated
 public class RegistrationController {
 
     UserRepository userRepository;
     private UserController userController;
+    @Qualifier
+    private UserServiceImpl userServiceImpl;
+    private UserValidator userValidator;
+    private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
+    @Qualifier("userValidator")
+    private Validator validator;
+
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
+    }
 
     @Autowired
-    public RegistrationController(UserRepository userRepository){
-        this.userRepository=userRepository;
+    public RegistrationController(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @RequestMapping("/register")
-    public String showRegisterPage(){
+    public String showRegisterPage() {
         return "register";
     }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public ModelAndView register(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            log.info("Error");
+            return new ModelAndView("register");
+        }
+        UserValidator userValidator=new UserValidator();
+        //User user = new User(firstname, lastname, address, email, password, "user");
+        /*user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setAddress(address);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setRole("user");*/
+        userRepository.save(user);
+        return new ModelAndView(new RedirectView("/registersuccess", true));
+        }
+    }
+
+
+
+
 
     /*@RequestMapping(value="/register",method= RequestMethod.POST)
     public ModelAndView register(@RequestParam(value="firstName")String firstName,@RequestParam(value="lastName")String lastName,@RequestParam(value="address")String address,@RequestParam(value="email")String email,@RequestParam(value="password")String password,@RequestParam(value="confirmPassword")String confirmPassword){
@@ -29,4 +88,3 @@ public class RegistrationController {
     }
 */
 
-}
