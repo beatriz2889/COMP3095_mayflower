@@ -60,13 +60,14 @@ public class RegistrationController {
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public ModelAndView register(@Valid User user, BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            log.info("Error");
-            return new ModelAndView("register");
-        }
+    public ModelAndView register(@RequestParam(value="firstname")String firstname,
+                                 @RequestParam(value="lastname")String lastname,
+                                 @RequestParam(value="address")String address,
+                                 @RequestParam(value="email")String email,
+                                 @RequestParam(value="password")String password,
+                                 @RequestParam(value="confirmpassword")String confirmpassword) {
         UserValidator userValidator=new UserValidator();
-        //User user = new User(firstname, lastname, address, email, password, "user");
+        User user = new User(firstname, lastname, address, email, password, "user");
         /*user.setFirstname(firstname);
         user.setLastname(lastname);
         user.setAddress(address);
