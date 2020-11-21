@@ -33,6 +33,7 @@ public class DemoApplication {
 
     private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
     private UserRepository userRepository;
+    private CreditProfileRepository creditProfileRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class,args);
@@ -40,5 +41,6 @@ public class DemoApplication {
         ApplicationContext ctx=new ClassPathXmlApplicationContext("beans.xml");
 
         UserServiceImpl userServiceImpl = (UserServiceImpl) ctx.getBean("userService");
+        CreditServiceImpl creditServiceImpl=(CreditServiceImpl)ctx.getBean("creditService");
     }
 }

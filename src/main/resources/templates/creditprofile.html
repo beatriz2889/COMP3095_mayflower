@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Credit Information Profile</title>
+    <link th:href="@{/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<div style="text-align: center;">
+    <h1>Add New Card</h1>
+    <form th:action="@{/creditprofile}" method="post">
+        <div class="form-group">
+            <input class="form-control" id="masterCard" th:name="cardType" type="radio"/><label for="masterCard">Master Card</label>
+            <input class="form-control" id="visa" th:name="cardType" type="radio"><label for="visa">VISA</label>
+            <input class="form-control" id="americanExpress" th:name="cardType" type="radio"><label for="americanExpress">American Express</label>
+        </div>
+
+        <div class="form-group">
+            <label for="expDate">Expiration Date </label><input autofocus="autofocus" class="form-control" id="expDate" th:name="expDate" type="datetime-local"/>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Card Holder Name </label><input autofocus="autofocus" class="form-control" id="name" th:name="name" type="text"/>
+        </div>
+
+        <div class="form-group">
+            <label for="cardNum">Credit Card Number </label><input autofocus="autofocus" class="form-control" id="cardNum" th:name="cardNum" type="number"/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" id="defaultCard" th:name="defaultCard" type="checkbox"/><label for="defaultCard">Save as Default or Preferred</label>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3">
+            <input type="submit" name="addCreditProfile" id="addCreditProfile" class="form-control btn btn-primary" value="Add/Update"/>
+            </button>
+        </div>
+
+
+
+
+    </form>
+</div>
+
+</body>
+</html>

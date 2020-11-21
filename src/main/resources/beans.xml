@@ -12,4 +12,8 @@
     </bean>
     <bean id="userService" class="comp3095_mayflower.demo.backend.UserServiceImpl" parent="userRepository"/>
     <bean id="userValidator" class="comp3095_mayflower.demo.backend.UserValidator"/>
+
+    <bean id="creditProfileRepository" class="comp3095_mayflower.demo.backend.CreditProfileRepository" abstract="true">
+    </bean>
+    <bean id="creditService" class="comp3095_mayflower.demo.backend.CreditServiceImpl" parent="creditProfileRepository"/>
 </beans>

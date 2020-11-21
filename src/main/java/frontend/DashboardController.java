@@ -36,23 +36,38 @@ public class DashboardController {
         return "dashboard";
     }
 
-    @RequestMapping("/tab1")
-    public String showTab1Page() {
-        return "tab1";
+    @RequestMapping("/admindashboard")
+    public String showAdminDashboardPage(){return "admindashboard";}
+
+    @RequestMapping("/myprofileuser")
+    public String showUserProfilePage() {
+        return "myprofileuser";
     }
 
-    @RequestMapping("/tab2")
-    public String showTab2Page() {
-        return "tab2";
+    @RequestMapping("/creditprofile")
+    public String showCreditProfilePage() {
+        return "creditprofile";
     }
 
-    @RequestMapping("/tab3")
-    public String showTab3Page() {
-        return "tab3";
+    @RequestMapping("/inboxuser")
+    public String showUserInboxPage() {
+        return "inboxuser";
     }
 
-    @RequestMapping("/tab4")
-    public String showTab4Page() {
-        return "tab4";
+    @RequestMapping("/supportuser")
+    public String showUserSupportPage() {
+        return "supportuser";
     }
+
+    @RequestMapping("/myprofileadmin")
+    public String showAdminProfilePage(){return "myprofileadmin";}
+
+    @RequestMapping("/users")
+    public String showUsersPage(){return "users";}
+
+    @RequestMapping("/inboxadmin")
+    public String showAdminInboxPage(){return "inboxadmin";}
+
+    @RequestMapping("/supportadmin")
+    public String showAdminSupportPage(){return "supportadmin";}
 }

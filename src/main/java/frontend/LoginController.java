@@ -54,16 +54,18 @@ public class LoginController {
                               Model model) {
         User user = userRepository.findByEmail(email);
         if (Objects.nonNull(user) && email.equals(user.getEmail())
-                && password.equals(user.getPassword())) {
+                && password.equals(user.getPassword())&& user.getRole().equals("user")) {
             return new ModelAndView(new RedirectView("/dashboard", true));
-        } else {
+        } else if (Objects.nonNull(user) && email.equals(user.getEmail())
+                && password.equals(user.getPassword())&& user.getRole().equals("admin")) {
+            return new ModelAndView(new RedirectView("/admindashboard", true));
+        }else
             // To display login error message
             model.addAttribute("invalidCredentials", true);
 
             return new ModelAndView("login");
         }
     }
-}
 
 
 

@@ -10,10 +10,8 @@
 
 package comp3095_mayflower.demo.backend;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -26,6 +24,9 @@ public class User {
     private String email;
     private String password;
     private String role;
+
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    private Set<CreditProfile> creditProfiles;
 
     public User(){}
 
