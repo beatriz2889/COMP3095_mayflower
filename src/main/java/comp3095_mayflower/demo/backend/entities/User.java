@@ -8,7 +8,9 @@
  It contains all of the fields required and the ID is auto generated for ease of use.
  ***************************************************************************************************/
 
-package comp3095_mayflower.demo.backend;
+package comp3095_mayflower.demo.backend.entities;
+
+import comp3095_mayflower.demo.backend.entities.CreditProfile;
 
 import javax.persistence.*;
 import java.util.Set;

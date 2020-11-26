@@ -10,6 +10,9 @@
 
 package comp3095_mayflower.demo.backend;
 
+import comp3095_mayflower.demo.backend.entities.User;
+import comp3095_mayflower.demo.backend.repositories.UserRepository;
+import comp3095_mayflower.demo.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

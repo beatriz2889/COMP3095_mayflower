@@ -15,6 +15,9 @@
 package frontend;
 
 import comp3095_mayflower.demo.backend.*;
+import comp3095_mayflower.demo.backend.controllers.UserController;
+import comp3095_mayflower.demo.backend.entities.User;
+import comp3095_mayflower.demo.backend.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

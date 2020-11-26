@@ -8,7 +8,9 @@
  they can be used in the UserServiceImpl class.
  ***************************************************************************************************/
 
-package comp3095_mayflower.demo.backend;
+package comp3095_mayflower.demo.backend.services;
+
+import comp3095_mayflower.demo.backend.entities.User;
 
 public interface UserService {
 
