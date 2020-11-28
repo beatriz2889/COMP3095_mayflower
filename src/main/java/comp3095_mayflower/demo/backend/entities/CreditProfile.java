@@ -1,8 +1,7 @@
-package comp3095_mayflower.demo.backend;
+package comp3095_mayflower.demo.backend.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 public class CreditProfile {

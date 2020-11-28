@@ -1,5 +1,6 @@
-package comp3095_mayflower.demo.backend;
+package comp3095_mayflower.demo.backend.repositories;
 
+import comp3095_mayflower.demo.backend.entities.CreditProfile;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

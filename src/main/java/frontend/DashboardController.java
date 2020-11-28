@@ -11,8 +11,8 @@
 
 package frontend;
 
-import comp3095_mayflower.demo.backend.UserController;
-import comp3095_mayflower.demo.backend.UserRepository;
+import comp3095_mayflower.demo.backend.controllers.UserController;
+import comp3095_mayflower.demo.backend.repositories.UserRepository;
 import comp3095_mayflower.demo.backend.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

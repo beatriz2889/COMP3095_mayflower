@@ -8,12 +8,12 @@
      http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <jpa:repositories base-package="comp3095_mayflower.demo.backend"/>
-    <bean id="userRepository" class="comp3095_mayflower.demo.backend.UserRepository" abstract="true">
+    <bean id="userRepository" class="comp3095_mayflower.demo.backend.repositories.UserRepository" abstract="true">
     </bean>
     <bean id="userService" class="comp3095_mayflower.demo.backend.UserServiceImpl" parent="userRepository"/>
     <bean id="userValidator" class="comp3095_mayflower.demo.backend.UserValidator"/>
 
-    <bean id="creditProfileRepository" class="comp3095_mayflower.demo.backend.CreditProfileRepository" abstract="true">
+    <bean id="creditProfileRepository" class="comp3095_mayflower.demo.backend.repositories.CreditProfileRepository" abstract="true">
     </bean>
     <bean id="creditService" class="comp3095_mayflower.demo.backend.CreditServiceImpl" parent="creditProfileRepository"/>
 </beans>
