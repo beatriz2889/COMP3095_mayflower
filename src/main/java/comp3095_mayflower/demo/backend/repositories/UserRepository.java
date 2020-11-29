@@ -11,13 +11,20 @@
 
 package comp3095_mayflower.demo.backend.repositories;
 import comp3095_mayflower.demo.backend.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+// JpaRepository extends CrudRepository
 @Repository
-public interface UserRepository extends CrudRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User,Integer> {
 
    User findByEmail(String email);
    User findByPassword(String password);
+
+   //Alan Dashboard - Me trying to make a CRUD
+   List<User> findByName(String firstname);
 }
 
