@@ -12,12 +12,19 @@
 package frontend;
 
 import comp3095_mayflower.demo.backend.controllers.UserController;
+import comp3095_mayflower.demo.backend.entities.User;
 import comp3095_mayflower.demo.backend.repositories.UserRepository;
 import comp3095_mayflower.demo.backend.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 public class DashboardController {
@@ -62,9 +69,50 @@ public class DashboardController {
     @RequestMapping("/myprofileadmin")
     public String showAdminProfilePage(){return "myprofileadmin";}
 
-    @RequestMapping("/users")
-    public String showUsersPage(){return "users";}
+    @GetMapping("users")
+    public String showUserList(Model model){
+        model.addAttribute("users",userRepository.findAll());
+        return"userlist";
+    }
 
+    @GetMapping("users/delete/{id}")
+    public String deleteUser(@PathVariable(value="id")int id,Model model){
+        User user=userRepository.findById(id).orElseThrow(()->new IllegalArgumentException(("Invalid user id:"+id)));
+        userRepository.delete(user);
+        model.addAttribute("users",userRepository.findAll());
+        return "userlist";
+
+    }
+
+
+
+    /*
+    @RequestMapping(value="/users",method= RequestMethod.GET)
+    public String userList(Model model){
+        model.addAttribute("users",userRepository.findAll());
+        return "userlist";
+    }*/
+
+
+
+
+
+
+
+    /*
+    @RequestMapping(value="/users{id}",method=RequestMethod.GET){
+        public String deleteUser(@PathVariable int id){
+            userRepository.deleteById(id);
+            return "userList";
+        }
+    }*/
+
+
+
+    /*
+    @RequestMapping("/userlist")
+    public String showUsersPage(){return "userlist";}
+     */
     @RequestMapping("/inboxadmin")
     public String showAdminInboxPage(){return "inboxadmin";}
 

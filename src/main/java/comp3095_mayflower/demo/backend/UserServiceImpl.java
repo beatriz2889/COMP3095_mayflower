@@ -16,6 +16,9 @@ import comp3095_mayflower.demo.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -32,4 +35,15 @@ public class UserServiceImpl implements UserService {
     public User findByPassword(String password){
         return userRepository.findByPassword(password);
     }
+
+    @Override
+    public List<User> getAllUsers(){
+        var it=userRepository.findAll();
+        var users=new ArrayList<User>();
+        it.forEach(e->users.add(e));
+        return users;
+    }
+
+
+
 }

@@ -10,12 +10,20 @@
 
 package comp3095_mayflower.demo.backend.controllers;
 
+import comp3095_mayflower.demo.backend.UserServiceImpl;
 import comp3095_mayflower.demo.backend.entities.User;
 import comp3095_mayflower.demo.backend.repositories.UserRepository;
 import comp3095_mayflower.demo.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -25,6 +33,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserServiceImpl userServiceImpl;
 
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -39,4 +50,20 @@ public class UserController {
     public User getUserByPassword(@PathVariable(value = "password") String password) {
         return userRepository.findByPassword(password);
     }
+
+
+
+
+
+
+    /*
+   @DeleteMapping("/users/{id}")
+    public Map<String,Boolean> deleteUser(@PathVariable(value="id")int id){
+        User user=userRepository.findById(id);
+        userRepository.delete(user);
+   }*/
+
+
+
 }
+
