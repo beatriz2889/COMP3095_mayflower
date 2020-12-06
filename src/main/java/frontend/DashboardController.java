@@ -13,24 +13,21 @@ package frontend;
 
 import comp3095_mayflower.demo.backend.controllers.UserController;
 import comp3095_mayflower.demo.backend.entities.User;
-import comp3095_mayflower.demo.backend.repositories.UserRepository;
+import comp3095_mayflower.demo.backend.repositories.SupportRepository;
 import comp3095_mayflower.demo.backend.UserServiceImpl;
+import comp3095_mayflower.demo.backend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
 
 @Controller
 public class DashboardController {
     @Qualifier
     private UserServiceImpl userServiceImpl;
     UserRepository userRepository;
+    SupportRepository supportRepository;
     private UserController userController;
 
     @Autowired
@@ -69,12 +66,19 @@ public class DashboardController {
     @RequestMapping("/myprofileadmin")
     public String showAdminProfilePage(){return "myprofileadmin";}
 
+
     @GetMapping("users")
     public String showUserList(Model model){
         model.addAttribute("users",userRepository.findAll());
         return"userlist";
     }
+    @GetMapping("list")
+    public String showInbox(Model model)
+    {
+        model.addAttribute("list",supportRepository.findAll());
+        return "inboxuser";
 
+    }
     @GetMapping("users/delete/{id}")
     public String deleteUser(@PathVariable(value="id")int id,Model model){
         User user=userRepository.findById(id).orElseThrow(()->new IllegalArgumentException(("Invalid user id:"+id)));
@@ -83,7 +87,6 @@ public class DashboardController {
         return "userlist";
 
     }
-
 
 
     /*

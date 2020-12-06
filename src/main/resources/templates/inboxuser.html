@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Inbox</title>
-    <link th:href="@{/styles.css}" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <title>Inbox Manager</title>
 </head>
 <body>
+<div align="center">
+    <h1 align="center">Inbox</h1>
+    <a href="/supportuser">Add new comment</a>
+    <br/><br/>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Actions</th>
 
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="support : ${list}">
+            <td th:text="${support.firstname}">Name</td>
+            <td th:text="${support.email}">Email</td>
+            <td th:text="${support.subject}">Subject</td>
+
+            <td>
+                <a th:href="@{'list/read/' }">Read</a>
+                &nbsp;&nbsp;&nbsp;<a th:href="@{'list/delete/'}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
