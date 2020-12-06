@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Support</title>
+    <link th:href="@{/styles.css}" rel="stylesheet"/>
+</head>
+<h1>Reply To Message</h1>
+<body>
+
+<form action="#" th:action="@{/messages/read/{id}(id=${messages.ticketnum})}" th:object="${messages}" method="post">
+
+    <div class="form-group">
+        <label for="ticketnum">Ticket#</label> <input autofocus="autofocus" class="form-control" id="ticketnum"
+                                                         th:field="*{ticketnum}" type="number" th:required="required"/>
+    <div class="form-group">
+        <label for="firstname">First Name</label> <input autofocus="autofocus" class="form-control" id="firstname"
+                                                         th:field="*{firstname}" type="text" th:required="required"/>
+        <label for="username">Email</label> <input autofocus="autofocus" class="form-control" id="username"
+                                                th:field="*{username}" type="email" th:required="required"/>
+    </div>
+    <div class="form-group">
+        <label for="subject">Subject</label><input autofocus="autofocus" class="form-control" id="subject"
+                                                   th:field="*{subject}" type="text" th:required="required"/>
+    </div>
+    <div class="form-group">
+        <label>Message</label>
+        <textarea id="message" th:field="*{message}" type="text"> </textarea>
+    </div>
+
+    <div class="col-sm-6 col-sm-offset-3">
+        <input type="submit" name="replyToSupportMessage" id="replyToSupportMessage" class="form-control btn btn-primary" value="Submit"/>
+        </button>
+    </div>
+    </div>
+</form>
+
+</body>
+</html>

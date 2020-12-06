@@ -6,10 +6,38 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-color: mediumaquamarine">
 <div th:replace="adminfragments :: navbar"></div>
-<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]] !</h1>
-<h2 style="text-align: center">Dashboard</h2>
-<img th:src="@{/img/banner.png}" alt="UNDER-CONSTRUCTION"/>
+<div class="container">
+    <h1 th:inline="text">Welcome Admin!</h1>
+    <h2 style="text-align: center">Dashboard</h2>
+    <div class="row">
+        <div class="col-sm">
+
+            <div class="d-flex flex-column justify-content-end">
+                <h3>Current Profile</h3>
+                <div th:each="adminprofile:${adminprofiles}">
+                    <div th:text="${adminprofile.firstname}"></div>
+                    <div th:text="${adminprofile.lastname}"></div>
+                    <div th:text="${adminprofile.email}"></div>
+                    <div th:text="${adminprofile.dob}"></div>
+                    <div th:text="${adminprofile.address}"></div>
+                    <div th:text="${adminprofile.city}"></div>
+                    <div th:text="${adminprofile.country}"></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm" style="max-height: 500px;overflow-y: auto;">
+            <div class="d-flex flex-column align-items-center">
+                <h3>Users</h3>
+                <div class="d-flex justify-content-between" th:each="user:${clientusers}">
+                    <div style="margin-right: 35px;" th:text="${user.firstName}"></div>
+                    <div th:text="${user.email}"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

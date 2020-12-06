@@ -58,9 +58,11 @@ public class LoginController {
         User user = userRepository.findByEmail(email);
         if (Objects.nonNull(user) && email.equals(user.getEmail())
                 && password.equals(user.getPassword())&& user.getRole().equals("user")) {
+            UserSessionController.loggedInUser = user;
             return new ModelAndView(new RedirectView("/dashboard", true));
         } else if (Objects.nonNull(user) && email.equals(user.getEmail())
                 && password.equals(user.getPassword())&& user.getRole().equals("admin")) {
+            UserSessionController.loggedInUser=user;
             return new ModelAndView(new RedirectView("/admindashboard", true));
         }else
             // To display login error message

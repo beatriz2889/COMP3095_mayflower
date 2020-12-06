@@ -17,8 +17,7 @@ package frontend;
 
 import comp3095_mayflower.demo.backend.*;
 import comp3095_mayflower.demo.backend.entities.User;
-import comp3095_mayflower.demo.backend.repositories.CreditProfileRepository;
-import comp3095_mayflower.demo.backend.repositories.UserRepository;
+import comp3095_mayflower.demo.backend.repositories.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -37,6 +36,9 @@ public class DemoApplication {
     private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
     private UserRepository userRepository;
     private CreditProfileRepository creditProfileRepository;
+    private UserProfileRepository userProfileRepository;
+    private AdminProfileRepository adminProfileRepository;
+    private MessagesRepository messagesRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class,args);
@@ -45,5 +47,8 @@ public class DemoApplication {
 
         UserServiceImpl userServiceImpl = (UserServiceImpl) ctx.getBean("userService");
         CreditServiceImpl creditServiceImpl=(CreditServiceImpl)ctx.getBean("creditService");
+        UserProfileServiceImpl userProfileService=(UserProfileServiceImpl)ctx.getBean("userProfileService");
+        AdminProfileServiceImpl adminProfileService=(AdminProfileServiceImpl)ctx.getBean("adminProfileService");
+        MessagesServiceImpl messagesService=(MessagesServiceImpl)ctx.getBean("messagesService");
     }
 }
