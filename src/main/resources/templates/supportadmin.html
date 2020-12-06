@@ -67,9 +67,12 @@
     }
 </style>
 <body>
-<form th:action="addComment" method="post">
+<form th:action="add" method="post">
     <div style="text-align: center;">
         <h1>Admin Support</h1>
+        <label for="ticket">ticket</label>
+        <input type="text" id="ticket" name="ticket">
+
 
         <label for="fname">First Name</label>
         <input type="text" id="fname" name="firstname" placeholder="Your name..">
