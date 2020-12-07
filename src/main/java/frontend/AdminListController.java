@@ -1,3 +1,12 @@
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #3 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-12-06
+ * Description: A list view of all the admin users.
+ ***************************************************************************************************/
+
 package frontend;
 
 import org.springframework.stereotype.Controller;
