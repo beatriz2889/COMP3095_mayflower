@@ -6,11 +6,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
-<div th:replace="fragments :: navbar"></div>
-<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]] !</h1>
-<!--<span th:text="${user.firstname}"/>-->
-<h2 style="text-align: center">Dashboard</h2>
-<img th:src="@{/img/banner.png}" alt="UNDER-CONSTRUCTION"/>
+<body style="background-color: mediumaquamarine">
+<div th:replace="userfragments :: navbar"></div>
+<h1 style="text-align: center">Dashboard</h1>
+<h2 th:inline="text">Welcome!</h2>
+
 </body>
 </html>

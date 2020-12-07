@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <link th:href="@{/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: mediumaquamarine">
+<div th:replace="userfragments :: navbar"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="p-2">
+                <form th:action="@{/userprofile}" method="post">
+                    <div style="text-align: center;">
+                        <h1>My Profile</h1>
+
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="firstname">First Name </label><input autofocus="autofocus" class="form-control profile-form-control" id="firstname" th:name="firstname" type="text"/>
+                        </div>
+
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="lastname">Last Name </label><input autofocus="autofocus" class="form-control profile-form-control" id="lastname" th:name="lastname" type="text"/>
+                        </div>
+
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="email">Email </label><input autofocus="autofocus" class="form-control profile-form-control" id="email" th:name="email" type="email"/>
+                        </div>
+
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="dob">Date of Birth </label><input autofocus="autofocus" class="form-control profile-form-control" id="dob" th:name="dob" type="date"/>
+                        </div>
+
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="address">Address </label><input autofocus="autofocus" class="form-control profile-form-control" id="address" th:name="address" type="text"/>
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="city">City </label><input autofocus="autofocus" class="form-control profile-form-control" id="city" th:name="city" type="text"/>
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="country">Country </label><input autofocus="autofocus" class="form-control profile-form-control" id="country" th:name="country" type="text"/>
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-around">
+                            <label for="postalcode">Postal Code </label><input autofocus="autofocus" class="form-control profile-form-control" id="postalcode" th:name="postalcode" type="text"/>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <input id="defaultbilling" th:name="defaultbilling" type="checkbox"/><label for="defaultbilling" style="margin-left: 30px;margin-bottom: 0;">Default Billing Address</label>
+                        </div>
+                        <div class="form-group d-flex align-items-center">
+                            <input id="defaultshipping" th:name="defaultshipping" type="checkbox" /><label for="defaultshipping" style="margin-left: 30px;margin-bottom: 0;">Default Shipping Address</label>
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="addOrUpdateUserProfile" id="addOrUpdateUserProfile" class="form-control btn btn-primary" value="Update"/>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm" style="max-height: 500px;overflow-y: auto;">
+            <div class="d-flex flex-column align-items-center">
+                <div th:each="userprofile:${userprofiles}">
+                    <div th:text="${userprofile.firstname}"></div>
+                    <div th:text="${userprofile.lastname}"></div>
+                    <div th:text="${userprofile.dob}"></div>
+                    <div th:text="${userprofile.email}"></div>
+                    <div th:text="${userprofile.address}"></div>
+                    <div th:text="${userprofile.city}"></div>
+                    <div th:text="${userprofile.country}"></div>
+                    <div th:text="${userprofile.defaultbilling}"></div>
+                    <div th:text="${userprofile.defaultshipping}"></div>
+                    <a th:href="@{/userprofiles/delete/{userprofileid}(userprofileid=${userprofile.userprofileid})}" class="btn btn-primary">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

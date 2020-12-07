@@ -11,111 +11,70 @@
 
 package frontend;
 
+import comp3095_mayflower.demo.backend.CreditServiceImpl;
 import comp3095_mayflower.demo.backend.controllers.UserController;
 import comp3095_mayflower.demo.backend.entities.User;
+import comp3095_mayflower.demo.backend.repositories.AdminProfileRepository;
+import comp3095_mayflower.demo.backend.repositories.CreditProfileRepository;
 import comp3095_mayflower.demo.backend.repositories.UserRepository;
 import comp3095_mayflower.demo.backend.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
-import java.security.Principal;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class DashboardController {
     @Qualifier
     private UserServiceImpl userServiceImpl;
     UserRepository userRepository;
+    CreditProfileRepository creditProfileRepository;
+    AdminProfileRepository adminProfileRepository;
     private UserController userController;
+    private CreditServiceImpl creditServiceImpl;
 
     @Autowired
-    public DashboardController(UserRepository userRepository) {
+    public DashboardController(UserRepository userRepository, CreditProfileRepository creditProfileRepository, AdminProfileRepository adminProfileRepository) {
         this.userRepository = userRepository;
+        this.creditProfileRepository=creditProfileRepository;
+        this.adminProfileRepository=adminProfileRepository;
+
     }
 
     @RequestMapping("/dashboard")
-    public String showDashboardPage() {
-        return "dashboard";
+    public ModelAndView showDashboardPage() {
+        User user=UserSessionController.loggedInUser;
+        if(user==null){
+            return new ModelAndView("login");
+
+        }
+        return new ModelAndView("dashboard");
     }
 
     @RequestMapping("/admindashboard")
-    public String showAdminDashboardPage(){return "admindashboard";}
-
-    @RequestMapping("/myprofileuser")
-    public String showUserProfilePage() {
-        return "myprofileuser";
+    public ModelAndView showAdminDashboardPage(Model model){
+        User user = UserSessionController.loggedInUser;
+        model.addAttribute("adminprofiles", adminProfileRepository.findByUser_Id(user.getId()));
+        model.addAttribute("clientusers",userRepository.findAllByRole("user"));
+        return new ModelAndView("admindashboard");
     }
-
-    @RequestMapping("/creditprofile")
-    public String showCreditProfilePage() {
-        return "creditprofile";
-    }
-
     @RequestMapping("/inboxuser")
     public String showUserInboxPage() {
         return "inboxuser";
     }
 
     @RequestMapping("/supportuser")
-    public String showUserSupportPage() {
-        return "supportuser";
-    }
-
-    @RequestMapping("/myprofileadmin")
-    public String showAdminProfilePage(){return "myprofileadmin";}
-
-    @GetMapping("users")
-    public String showUserList(Model model){
-        model.addAttribute("users",userRepository.findAll());
-        return"userlist";
-    }
-
-    @GetMapping("users/delete/{id}")
-    public String deleteUser(@PathVariable(value="id")int id,Model model){
-        User user=userRepository.findById(id).orElseThrow(()->new IllegalArgumentException(("Invalid user id:"+id)));
-        userRepository.delete(user);
-        model.addAttribute("users",userRepository.findAll());
-        return "userlist";
-
-    }
-
-
-
-    /*
-    @RequestMapping(value="/users",method= RequestMethod.GET)
-    public String userList(Model model){
-        model.addAttribute("users",userRepository.findAll());
-        return "userlist";
-    }*/
-
-
-
-
-
-
-
-    /*
-    @RequestMapping(value="/users{id}",method=RequestMethod.GET){
-        public String deleteUser(@PathVariable int id){
-            userRepository.deleteById(id);
-            return "userList";
+    public ModelAndView showUserSupportPage() {
+        User user=UserSessionController.loggedInUser;
+        if(user==null){
+            return new ModelAndView("login");
         }
-    }*/
+        return new ModelAndView("supportuser");
+    }
 
-
-
-    /*
-    @RequestMapping("/userlist")
-    public String showUsersPage(){return "userlist";}
-     */
     @RequestMapping("/inboxadmin")
     public String showAdminInboxPage(){return "inboxadmin";}
 
-    @RequestMapping("/supportadmin")
-    public String showAdminSupportPage(){return "supportadmin";}
 }

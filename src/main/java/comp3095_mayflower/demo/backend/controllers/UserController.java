@@ -51,19 +51,9 @@ public class UserController {
         return userRepository.findByPassword(password);
     }
 
-
-
-
-
-
-    /*
-   @DeleteMapping("/users/{id}")
-    public Map<String,Boolean> deleteUser(@PathVariable(value="id")int id){
-        User user=userRepository.findById(id);
-        userRepository.delete(user);
-   }*/
-
-
-
+    @GetMapping("/user/{role}")
+    public List <User> getUserByRole(@PathVariable(value="role")String role){
+        return userRepository.findByRole(role);
+    }
 }
 

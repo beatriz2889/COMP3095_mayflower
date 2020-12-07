@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>Read Message</title>
+</head>
+<body style="background-color: mediumaquamarine">
+<form action="#" th:action="@{/message/read/{id}(id=${messages.ticketnum})}" th:object="${messages}" method="post">
+    <div class="form-group">
+        <label>Message</label>
+        <textarea id="message" th:field="*{message}" type="text"> </textarea>
+    </div>
+</form>
+
+</body>
+</html>

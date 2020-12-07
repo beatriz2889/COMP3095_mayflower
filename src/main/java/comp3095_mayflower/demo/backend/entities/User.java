@@ -13,6 +13,8 @@ package comp3095_mayflower.demo.backend.entities;
 import comp3095_mayflower.demo.backend.entities.CreditProfile;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,50 +29,64 @@ public class User {
     private String password;
     private String role;
 
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
-    private Set<CreditProfile> creditProfiles;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private List<CreditProfile> creditprofile = new ArrayList<>();
 
-    public User(){}
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private List<UserProfile> userprofile = new ArrayList<>();
 
-    public User(String firstname, String lastname, String address, String email, String password,String role){
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private List<Messages> messages = new ArrayList<>();
 
-        this.firstname=firstname;
-        this.lastname=lastname;
-        this.address=address;
-        this.email=email;
-        this.password=password;
-        this.role=role;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy="user")
+    private AdminProfile adminprofile;
+
+    public User() {
+    }
+
+    public User(String firstname, String lastname, String address, String email, String password, String role) {
+
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+        this.role = role;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return String.format("User[id=%d, firstname='%s', lastname='%s', address='%s', email='%s',password='%s']",
-                id,firstname,lastname,address,email,password);
+                id, firstname, lastname, address, email, password);
     }
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
-    public String getFirstName(){
+    public String getFirstName() {
         return firstname;
     }
 
-    public String getLastName(){
+    public String getLastName() {
         return lastname;
     }
 
-    public String getAddress(){
+    public String getAddress() {
         return address;
     }
 
-    public String getEmail(){
+    public String getEmail() {
         return email;
     }
 
-    public String getPassword(){return password;}
+    public String getPassword() {
+        return password;
+    }
 
-    public String getRole(){return role;}
+    public String getRole() {
+        return role;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -96,8 +112,8 @@ public class User {
         this.password = password;
     }
 
-    public void setRole(String role){
-        this.role=role;
+    public void setRole(String role) {
+        this.role = role;
     }
 }
 

@@ -7,7 +7,6 @@ Body {
 }
 .btn-primary {
     background-color: purple;
-    width: 6%;
     color: orange;
     padding: 15px;
     margin: 10px 0px;
@@ -44,3 +43,8 @@ button:hover {
     display: flex;
     justify-content: center;
 }
+
+input[type=text].profile-form-control, input[type=password].profile-form-control, input[type=email].profile-form-control, input[type=date].profile-form-control, input[type=number].profile-form-control {
+    margin-left: 40px;
+}
+

@@ -1,7 +1,20 @@
-package comp3095_mayflower.demo.backend.entities;
+/**************************************************************************************************
+ * Project: <COMP3095_mayflower>
+ * Assignment: < assignment #3 >
+ * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
+ * Student Number: <101125413,101159722,101136369,101165654>
+ * Date: 2020-12-06
+ * Description: This is the entity class for the creditprofile table. All of the columns
+ for the credit profile table are defined here. The table is joined to the user table so
+ that the user id is added as a column in credit profile table.The reason for this is so
+ that session tracking can be done as the profiles will be using the user session controller,
+ which in turn uses the user id to track which user is currently logged into the system.
+ ***************************************************************************************************/
 
+package comp3095_mayflower.demo.backend.entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class CreditProfile {
@@ -9,22 +22,25 @@ public class CreditProfile {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int creditid;
     private String cardtype;
-    private LocalDateTime expdate;
+    private Date expdate;
     private String name;
     private int cardnum;
     private boolean defaultcard;
 
     @ManyToOne
+    @JoinColumn(name="user_id")
     private User user;
+
 
     public CreditProfile(){}
 
-    public CreditProfile(String cardtype,LocalDateTime expdate,String name,int cardnum,boolean defaultcard){
+    public CreditProfile(String cardtype,Date expdate,String name,int cardnum,boolean defaultcard, User user){
         this.cardtype=cardtype;
         this.expdate=expdate;
         this.name=name;
         this.cardnum=cardnum;
         this.defaultcard=defaultcard;
+        this.user=user;
     }
 
     @Override
@@ -41,7 +57,7 @@ public class CreditProfile {
         return cardtype;
     }
 
-    public LocalDateTime getExpdate() {
+    public Date getExpdate() {
         return expdate;
     }
 
@@ -65,7 +81,7 @@ public class CreditProfile {
         this.cardtype = cardtype;
     }
 
-    public void setExpdate(LocalDateTime expdate) {
+    public void setExpdate(Date expdate) {
         this.expdate = expdate;
     }
 
@@ -80,4 +96,6 @@ public class CreditProfile {
     public void setDefaultcard(boolean defaultcard) {
         this.defaultcard = defaultcard;
     }
+
+
 }

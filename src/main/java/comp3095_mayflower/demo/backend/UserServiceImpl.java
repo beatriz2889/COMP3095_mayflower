@@ -1,11 +1,11 @@
 /**************************************************************************************************
  * Project: <COMP3095_mayflower>
- * Assignment: < assignment #2 >
+ * Assignment: < assignment #3 >
  * Author(s): <Esther Kim, Beatriz Morales, Alan Pintor, Afsana Bilkis-Ritu>
  * Student Number: <101125413,101159722,101136369,101165654>
- * Date: 2020-11-08
+ * Date: 2020-12-06
  * Description: This is the implementation class of the UserService class. This is where the
- repository methods are fully defined. These methods will be used in the UserController class.
+ repository methods are fully defined. These methods will be used in various controllers.
  ***************************************************************************************************/
 
 package comp3095_mayflower.demo.backend;
@@ -44,6 +44,25 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+    @Override
+    public List<User> findByRole(String role){
+        var it=userRepository.findByRole("admin");
+        var adminusers=new ArrayList<User>();
+        it.forEach(e->adminusers.add(e));
+        return adminusers;
+    }
+
+    @Override
+    public User findById(int id){
+        return userRepository.findById(id);
+    }
 
 
+    @Override
+    public List<User> findAllByRole(String role){
+        var it=userRepository.findByRole("user");
+        var clientusers=new ArrayList<User>();
+        it.forEach(e->clientusers.add(e));
+        return clientusers;
+    }
 }

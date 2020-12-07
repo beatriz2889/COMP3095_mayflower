@@ -4,55 +4,64 @@
     <meta charset="UTF-8">
     <title>Credit Information Profile</title>
     <link th:href="@{/styles.css}" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-<form th:action="@{/creditprofile}" method="post">
-<div style="text-align: center;">
-    <h1>Add New Card</h1>
+<body style="background-color: mediumaquamarine">
+<div th:replace="userfragments :: navbar"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <div class="p-2">
+                <form th:action="@{/creditprofile}" method="post">
+                    <div style="text-align: center;">
+                        <h1>Add New Card</h1>
 
-    <label  class="radio-inline">
-        <input type="radio" name="cardType" id="mastercard"  value="mastercard" checked="checked"/>Master Card
-    </label>
-    <label  class="radio-inline">
-        <input  type="radio" name="cardType"  id="visa" value="visa"/>Visa
-    </label>
-    <label  class="radio-inline">
-        <input  type="radio" name="cardType"  id="amex" value="amex"/>American Express
-    </label>
+                        <label  class="radio-inline">
+                            <input type="radio" name="cardType" id="mastercard"  value="mastercard" checked="checked"/>Master Card
+                        </label>
+                        <label  class="radio-inline">
+                            <input  type="radio" name="cardType"  id="visa" value="visa"/>Visa
+                        </label>
+                        <label  class="radio-inline">
+                            <input  type="radio" name="cardType"  id="amex" value="amex"/>American Express
+                        </label>
 
-        <div class="form-group">
-            <label for="expDate">Expiration Date </label><input autofocus="autofocus" class="form-control" id="expDate" th:name="expDate" type="datetime-local"/>
-        </div>
+                        <div class="form-group">
+                            <label for="expDate">Expiration Date </label><input autofocus="autofocus" class="form-control" id="expDate" th:name="expDate" type="date"/>
+                        </div>
 
-        <div class="form-group">
-            <label for="name">Card Holder Name </label><input autofocus="autofocus" class="form-control" id="name" th:name="name" type="text"/>
-        </div>
+                        <div class="form-group">
+                            <label for="name">Card Holder Name </label><input autofocus="autofocus" class="form-control" id="name" th:name="name" type="text"/>
+                        </div>
 
-        <div class="form-group">
-            <label for="cardNum">Credit Card Number </label><input autofocus="autofocus" class="form-control" id="cardNum" th:name="cardNum" type="number"/>
-        </div>
+                        <div class="form-group">
+                            <label for="cardNum">Credit Card Number </label><input autofocus="autofocus" class="form-control" id="cardNum" th:name="cardNum" type="number"/>
+                        </div>
 
-        <div class="form-group">
-            <input class="form-control" id="defaultCard" th:name="defaultCard" type="checkbox"/><label for="defaultCard">Save as Default or Preferred</label>
+                        <div class="form-group">
+                            <input class="form-control" id="defaultCard" th:name="defaultCard" type="checkbox"/><label for="defaultCard">Save as Default or Preferred</label>
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="addCreditProfile" id="addCreditProfile" class="form-control btn btn-primary" value="Add/Update"/>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="col-sm-6 col-sm-offset-3">
-            <input type="submit" name="addCreditProfile" id="addCreditProfile" class="form-control btn btn-primary" value="Add/Update"/>
-            </button>
+        <div class="col-sm" style="max-height: 500px;overflow-y: auto;">
+            <div class="d-flex flex-column align-items-center">
+                <div th:each="creditprofile:${creditprofiles}">
+                    <div th:text="${creditprofile.cardtype}"></div>
+                    <div th:text="${creditprofile.expdate}"></div>
+                    <div th:text="${creditprofile.name}"></div>
+                    <div th:text="${creditprofile.cardnum}"></div>
+                    <div th:text="${creditprofile.defaultcard}"></div>
+                    <a th:href="@{/creditprofiles/delete/{creditid}(creditid=${creditprofile.creditid})}" class="btn btn-primary">Delete</a>
+                </div>
+            </div>
         </div>
+    </div>
 </div>
-    <!--
-<div style="text-align: right";>
-    <h1>List existing cards</h1>
-    <p th:each="creditprofile:${creditprofiles}">
-
-    <p th:text="${creditprofile.cardtype}"></p>
-    <p th:text="${creditprofile.expdate}"></p>
-    <p th:text="${creditprofile.name}"></p>
-    <p th:text="${creditprofile.cardnum}"></p>
-    <p th:text="${creditprofile.defaultcard}"></p>
-    </p>
-</div>
--->
-</form>
 </body>
 </html>

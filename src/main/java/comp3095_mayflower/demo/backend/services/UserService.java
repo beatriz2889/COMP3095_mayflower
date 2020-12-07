@@ -19,5 +19,9 @@ public interface UserService {
     User findByEmail(String email);
     User findByPassword(String password);
     List getAllUsers();
+    List <User> findByRole(String role);
+    //Iterable<User>findAllByRole(String role);
+    User findById(int id);
+    List<User>findAllByRole(String role);
 
 }

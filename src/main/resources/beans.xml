@@ -16,4 +16,13 @@
     <bean id="creditProfileRepository" class="comp3095_mayflower.demo.backend.repositories.CreditProfileRepository" abstract="true">
     </bean>
     <bean id="creditService" class="comp3095_mayflower.demo.backend.CreditServiceImpl" parent="creditProfileRepository"/>
+    <bean id="adminProfileRepository" class="comp3095_mayflower.demo.backend.repositories.AdminProfileRepository" abstract="true">
+    </bean>
+    <bean id="adminProfileService" class="comp3095_mayflower.demo.backend.AdminProfileServiceImpl" parent="adminProfileRepository"/>
+    <bean id="userProfileRepository" class="comp3095_mayflower.demo.backend.repositories.UserProfileRepository" abstract="true">
+    </bean>
+    <bean id="userProfileService" class="comp3095_mayflower.demo.backend.UserProfileServiceImpl" parent="userProfileRepository"/>
+    <bean id="messagesRepository" class="comp3095_mayflower.demo.backend.repositories.MessagesRepository" abstract="true">
+    </bean>
+    <bean id="messagesService" class="comp3095_mayflower.demo.backend.MessagesServiceImpl" parent="messagesRepository"/>
 </beans>
