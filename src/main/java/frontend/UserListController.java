@@ -43,7 +43,7 @@ public class UserListController {
         if(!user.getRole().equals("admin")){
             return new ModelAndView("login");
         }
-        model.addAttribute("users",userRepository.findAll());
+        model.addAttribute("users",userRepository.findByRole("user"));
         return new ModelAndView("userlist");
     }
 
